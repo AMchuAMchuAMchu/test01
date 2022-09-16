@@ -1,0 +1,93 @@
+page,element{
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+	flex-wrap: nowrap;
+	align-content: stretch;
+}
+
+div,view,swiper-item,list-header,list-footer,cell,label,ul,li{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+	flex-wrap: nowrap;
+	align-content: stretch;
+	position: relative;
+	box-sizing: border-box;
+}
+
+ul,li{
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+img{
+	border: none;
+}
+button{
+	outline: none;
+	border: 1px solid #dfdfdf;
+    border-radius: 4px;
+    padding: 6px 20px;
+    color: black;
+    text-align: center;
+    background: #f8f8f8;
+}
+input {
+	outline: none;
+	border: 1px solid #dfdfdf;
+    background: #fff;
+    width: 160px;
+    height: 31px;
+}
+textarea {
+    border: 1px solid #dfdfdf;
+    background: #fff;
+    width: 160px;
+    height: 40px;
+}
+progress {
+    width: 160px;
+    height: 6px;
+}
+checkbox {
+    color: #006bff;
+    width: 25px;
+    height: 25px;
+}
+radio {
+    color: #006bff;
+    width: 25px;
+    height: 25px;
+}
+slider {
+    width: 160px;
+    height: 31px;
+}
+switch {
+    width: 51px;
+    height: 31px;
+}
+
+.wx-label{
+	flex-direction: row;
+	height: auto;
+	width: auto;
+	align-items: center;
+}
+
+.wx-scroll-view{
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    align-content: stretch;
+	overflow: scroll;
+}
