@@ -2,8 +2,8 @@
 	<view class="page">
 	<h1>我是子组件...🍏🍏</h1>
 	<h1>收到的父组件的信息:{{anime}}</h1>
-	<input type="text" placeholder="请输入金额...🎃🎃" v-model="add">
-	<button @click="updateData">点我修改🥳🥳</button>
+	<input type="text" placeholder="请输入金额...有BUG🎃🎃" v-model="add">
+	<button @click="update">点我修改🥳🥳</button>
 	<h2>金额 : {{add}}</h2>
 	</view>
 </template>
@@ -23,9 +23,9 @@ export default {
 		}
 	},
 	methods: {
-		updateData(){
+		update(){
 			// alert(typeof parseInt(this.add))
-			this.fire('setNum',this.data.add)
+			this.fire('setNum',100)
 			// this.setNum(this.data.add)
 		}
 	}

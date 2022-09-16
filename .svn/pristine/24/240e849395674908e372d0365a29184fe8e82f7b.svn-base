@@ -1,0 +1,85 @@
+<template>
+	<safe-area class="page">
+		<!-- 
+			收集数据使用v-model
+		-->
+		<input type="text" placeholder="请输入搜索内容" class="search" v-model="searchText" />
+		<!-- 遍历的元素需要包裹一个容器，否则可能影响到其他元素功能 -->
+		<view>
+			<text v-for="anime in handleAnimes" :key="anime.id">
+				{ anime.id } - { anime.name } - {anime.time}
+			</text>
+    <img style="background-size:cover" src="../../image/11385343fbf2b2119313f479cdd272380cd7912320f0.jpg"/>
+		</view>
+		<view class="container">
+			<button @click="setOrderType('asc')">😂😂年龄升序</button>
+			<button @click="setOrderType('desc')">🤣🤣年龄降序</button>
+			<button @click="setOrderType('origin')">😤😤原本顺序</button>
+		</view>
+	</safe-area>
+</template>
+<script>
+export default {
+  name: 'demo4',
+  apiready() {//like created
+
+  },
+  data() {
+    return {
+      animes: [
+		  {id:1,name:'罪恶王冠',time:2011},
+		  {id:2,name:'魔女之旅',time:2020},
+		  {id:3,name:'终末的女武神',time:2021},
+		  {id:4,name:'食锈末世录',time:2022},
+		  {id:5,name:'哥布林杀手',time:2018},
+		  {id:6,name:'那朵花',time:2011},
+		  {id:7,name:'影宅1',time:2020},
+		  {id:8,name:'美妙世界',time:2020},
+		  {id:9,name:'为美好世界献上祝福',time:2015},
+		  {id:10,name:'我的青春恋爱物语果然有问题',time:2013},
+		  {id:11,name:'尸鬼',time:2010},
+		  {id:12,name:'黑岩射手',time:2013},
+		  {id:13,name:'影宅2',time:2022},
+		  {id:14,name:'刀剑神域第一季SAO+ALO',time:2016},
+	  ],
+      // 搜索内容
+      searchText: '',
+      // 排序类型 asc 升序  desc 降序 origin 原本顺序
+      orderType: 'origin'
+    }
+  },
+  methods: {
+    setOrderType(orderType) {
+      this.data.orderType = orderType
+    }
+  },
+  computed: {
+    handleAnimes() {
+      const { animes, searchText, orderType } = this.data;
+      // 过滤，只保留包含searchText的内容
+      let newAnimes = animes.filter((anime) => anime.name.includes(searchText));
+      // 排序
+      if (orderType === 'asc') {
+        newAnimes.sort((a, b) => a.time - b.time)
+      } else if (orderType === 'desc') {
+        newAnimes.sort((a, b) => b.time - a.time)
+      }
+
+      return newAnimes;
+    }
+  }
+}
+</script>
+<style>
+.page {
+  padding: 10px;
+}
+.search {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.container {
+  flex-direction: row;
+  margin-top: 10px;
+}
+</style>

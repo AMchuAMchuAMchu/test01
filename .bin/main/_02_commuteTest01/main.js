@@ -11,9 +11,9 @@
 		Child.prototype = Object.create(Component && Component.prototype);
 		Child.prototype.constructor = Child;
 		Child.prototype.apiready = function() {};
-		Child.prototype.update = function() {
+		Child.prototype.updateData = function() {
 			// alert(typeof parseInt(this.add))
-			this.fire("setNum", 100);
+			this.fire("setNum", this.data.add);
 			// this.setNum(this.data.add)
 		};
 		Child.prototype.render = function() {
@@ -35,7 +35,7 @@
 					},
 					value: typeof add == "undefined" ? this.data.add : add
 				}),
-				apivm.h("button", {onClick: this.update}, "点我修改🥳🥳"),
+				apivm.h("button", {onClick: this.updateData}, "点我修改🥳🥳"),
 				apivm.h("h2", null, "金额 : ", this.data.add)
 			);
 		};
@@ -59,17 +59,21 @@
 		Main.prototype.constructor = Main;
 		Main.prototype.apiready = function() {};
 		Main.prototype.setNum = function(e) {
-			// alert(typeof e)
-			this.data.count += e.detail;
+			// alert(typeof e.detail)
+			// alert(e)
+			// api.alert({
+			// 	msg:e.detail
+			// })
+			this.data.count += parseInt(e.detail); //字符转整形
 			// alert(typeof this.data.count)
 		};
 		Main.prototype.render = function() {
 			return apivm.h(
-				"view",
-				{class: "page"},
+				"safe-area",
+				null,
 				apivm.h(
-					"safe-area",
-					null,
+					"view",
+					{class: "page"},
 					apivm.h("h1", null, "我是父组件...😎😎"),
 
 					apivm.h("child", {anime: this.data.anime, onSetNum: this.setNum}),

@@ -1,12 +1,9 @@
 <template>
-	<safe-area>
 	<view class="page">
 		<h1>我是父组件...😎😎</h1>
-		<!-- <child :anime="anime" @setNum="setNum"/> -->
-		<child :anime="anime" @setNum="setNum"/>
-	<h1>count show = {{count}}</h1>
+		<child :anime="anime" :setNum="setNum"/>
+	<h1>count show :: {{count}}</h1>
 	</view>
-	</safe-area>
 </template>
 <script>
 
@@ -25,13 +22,7 @@ export default {
 	},
 	methods: {
 		setNum(e){
-			// alert(typeof e.detail)
-			// alert(e)
-			// api.alert({
-			// 	msg:e.detail
-			// })
-			this.data.count += parseInt(e.detail)
-			// alert(typeof this.data.count)
+			this.count += e.details
 		}
 	}
 }

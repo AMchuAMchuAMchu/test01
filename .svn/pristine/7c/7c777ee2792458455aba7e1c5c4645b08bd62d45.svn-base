@@ -10,7 +10,7 @@
 </template>
 <script>
 
-import '../../../components/child/child.stml'
+import '../../components/child/child.stml'
 
 export default {
 	name: 'main',
@@ -25,12 +25,8 @@ export default {
 	},
 	methods: {
 		setNum(e){
-			// alert(typeof e.detail)
-			// alert(e)
-			// api.alert({
-			// 	msg:e.detail
-			// })
-			this.data.count += parseInt(e.detail)//字符转整形
+			// alert(typeof e)
+			this.data.count += e.detail
 			// alert(typeof this.data.count)
 		}
 	}
