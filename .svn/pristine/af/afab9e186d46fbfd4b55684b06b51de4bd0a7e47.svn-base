@@ -1,0 +1,43 @@
+<template>
+	<safe-area>
+	<view class="page">
+		<h1>我是父组件...😎😎</h1>
+		<!-- <child :anime="anime" @setNum="setNum"/> -->
+		<child :anime="anime" @setNum="setNum"/>
+	<h1>count show = {{count}}</h1>
+	</view>
+	</safe-area>
+</template>
+<script>
+
+import '../../../components/child/child.stml'
+
+export default {
+	name: 'main',
+	apiready(){//like created
+
+	},
+	data() {
+		return{
+			anime:"LYCORIS",
+			count:0,
+		}
+	},
+	methods: {
+		setNum(e){
+			// alert(typeof e.detail)
+			// alert(e)
+			// api.alert({
+			// 	msg:e.detail
+			// })
+			this.data.count += parseInt(e.detail)//字符转整形
+			// alert(typeof this.data.count)
+		}
+	}
+}
+</script>
+<style>
+	.page {
+		height: 100%;
+	}
+</style>
