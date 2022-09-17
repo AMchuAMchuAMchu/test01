@@ -1,0 +1,39 @@
+<template>
+	<view class="page">
+	<h1>我是子组件...🍏🍏</h1>
+	<h1>收到的父组件的信息:{{anime}}</h1>
+	<input type="text" placeholder="请输入金额...🎃🎃" v-model="add">
+	<button @click="updateData">点我修改🥳🥳</button>
+	<h2>金额 : {{add}}</h2>
+	<image src="../../image/Emilike.jpg" />
+	</view>
+</template>
+<script>
+export default {
+	name: 'child',
+	apiready(){//like created
+
+	},
+	props:{
+		anime:String,
+		setNum:Function
+	},
+	data() {
+		return{
+			add:0
+		}
+	},
+	methods: {
+		updateData(){
+			// alert(typeof parseInt(this.add))
+			this.fire('setNum',this.data.add)
+			// this.setNum(this.data.add)
+		}
+	}
+}
+</script>
+<style>
+	.page {
+		height: 100%;
+	}
+</style>
