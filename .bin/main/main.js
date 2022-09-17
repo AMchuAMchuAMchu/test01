@@ -25,7 +25,7 @@
 				apivm.h("h1", null, "收到的父组件的信息:", this.props.anime),
 				apivm.h("input", {
 					type: "text",
-					placeholder: "请输入金额...有BUG🎃🎃",
+					placeholder: "请输入金额...🎃🎃",
 					onInput: function(e) {
 						if (typeof add != "undefined") {
 							add = e.target.value;
