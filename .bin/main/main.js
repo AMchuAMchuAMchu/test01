@@ -36,7 +36,8 @@
 					value: typeof add == "undefined" ? this.data.add : add
 				}),
 				apivm.h("button", {onClick: this.updateData}, "点我修改🥳🥳"),
-				apivm.h("h2", null, "金额 : ", this.data.add)
+				apivm.h("h2", null, "金额 : ", this.data.add),
+				apivm.h("image", {src: "../../image/Emilike.jpg"})
 			);
 		};
 
@@ -77,6 +78,7 @@
 					apivm.h("h1", null, "我是父组件...😎😎"),
 
 					apivm.h("child", {anime: this.data.anime, onSetNum: this.setNum}),
+
 					apivm.h("h1", null, "count show = ", this.data.count)
 				)
 			);

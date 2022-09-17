@@ -4,6 +4,7 @@
 		<h1>我是父组件...😎😎</h1>
 		<!-- <child :anime="anime" @setNum="setNum"/> -->
 		<child :anime="anime" @setNum="setNum"/>
+		
 	<h1>count show = {{count}}</h1>
 	</view>
 	</safe-area>

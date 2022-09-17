@@ -25,7 +25,7 @@
 				apivm.h("h1", null, "收到的父组件的信息:", this.props.anime),
 				apivm.h("input", {
 					type: "text",
-					placeholder: "请输入金额...有BUG🎃🎃",
+					placeholder: "请输入金额...🎃🎃",
 					onInput: function(e) {
 						if (typeof add != "undefined") {
 							add = e.target.value;
@@ -36,7 +36,8 @@
 					value: typeof add == "undefined" ? this.data.add : add
 				}),
 				apivm.h("button", {onClick: this.updateData}, "点我修改🥳🥳"),
-				apivm.h("h2", null, "金额 : ", this.data.add)
+				apivm.h("h2", null, "金额 : ", this.data.add),
+				apivm.h("image", {src: "../../image/Emilike.jpg"})
 			);
 		};
 

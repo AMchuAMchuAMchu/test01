@@ -5,6 +5,7 @@
 	<input type="text" placeholder="请输入金额...🎃🎃" v-model="add">
 	<button @click="updateData">点我修改🥳🥳</button>
 	<h2>金额 : {{add}}</h2>
+	<image src="../../image/Emilike.jpg" />
 	</view>
 </template>
 <script>
