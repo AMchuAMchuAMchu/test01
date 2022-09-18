@@ -26,17 +26,6 @@
 
 				birth: [0, 0]
 			};
-			this.compute = {
-				formatBirth: function() {
-					var ref = this.data;
-					var dateList = ref.dateList;
-					var birth = ref.birth;
-
-					return dateList[0][birth[0]] + "-" + dateList[1][birth[1]];
-				},
-				dateList: function() {},
-				birth: function() {}
-			};
 		}
 
 		if (Component) Main.__proto__ = Component;
@@ -48,6 +37,7 @@
 			return apivm.h(
 				"view",
 				{class: "page"},
+
 				apivm.h(
 					"form",
 					{class: "form", onSubmit: this.submit},
@@ -88,7 +78,7 @@
 							class: "form-item",
 							onChange: this.setBirth
 						},
-						apivm.h("text", null, "出生年月:", this.formatBirth)
+						apivm.h("text", null, "出生年月:", formatBirth)
 					),
 
 					apivm.h(
@@ -141,7 +131,7 @@
 		return Main;
 	})(Component);
 	Main.css = {
-		".form": {padding: "30px"},
+		".form": {padding: "10px"},
 		".form-item": {flexDirection: "row", marginBottom: "10px"}
 	};
 	apivm.define("main", Main);

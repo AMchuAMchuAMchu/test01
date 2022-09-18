@@ -1,5 +1,6 @@
 <template>
 	<view class="page">
+
 		<form class="form" @submit="submit">
 			<view class="form-item">
 				<text>姓名:</text>
@@ -107,19 +108,12 @@ export default {
 		submit(e){
 		}
 
-	},
-	computed:{
-		formatBirth(){
-			const {dateList,birth} = this.data
-
-			return `${dateList[0][birth[0]]}-${dateList[1][birth[1]]}`
-		}
 	}
 }
 </script>
 <style>
 	.form{
-		padding: 30px;
+		padding: 10px;
 	}
 	.form-item{
 		flex-direction: row;
