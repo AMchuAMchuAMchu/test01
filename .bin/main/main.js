@@ -42,12 +42,23 @@
 		if (Component) Main.__proto__ = Component;
 		Main.prototype = Object.create(Component && Component.prototype);
 		Main.prototype.constructor = Main;
-		Main.prototype.apiready = function() {};
-		Main.prototype.submit = function(e) {};
+		Main.prototype.apiready = function() {
+			//like created
+			var picker = document.querySelector("#birth-picker");
+			picker.setData({data: this.data.dateList});
+		};
+		Main.prototype.submit = function(e) {
+			api.alert({
+				msg: Object.assign({}, e.detail.value, {birth: this.formatBirth})
+			});
+		};
+		Main.prototype.setBirth = function(e) {
+			this.data.birth = e.detail.value;
+		};
 		Main.prototype.render = function() {
 			return apivm.h(
-				"view",
-				{class: "page"},
+				"safe-area",
+				null,
 				apivm.h(
 					"form",
 					{class: "form", onSubmit: this.submit},

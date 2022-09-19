@@ -26,18 +26,39 @@
 
 				birth: [0, 0]
 			};
+			this.compute = {
+				formatBirth: function() {
+					var ref = this.data;
+					var dateList = ref.dateList;
+					var birth = ref.birth;
+
+					return dateList[0][birth[0]] + "-" + dateList[1][birth[1]];
+				},
+				dateList: function() {},
+				birth: function() {}
+			};
 		}
 
 		if (Component) Main.__proto__ = Component;
 		Main.prototype = Object.create(Component && Component.prototype);
 		Main.prototype.constructor = Main;
-		Main.prototype.apiready = function() {};
-		Main.prototype.submit = function(e) {};
+		Main.prototype.apiready = function() {
+			//like created
+			var picker = document.querySelector("#birth-picker");
+			picker.setData({data: this.data.dateList});
+		};
+		Main.prototype.submit = function(e) {
+			api.alert({
+				msg: Object.assign({}, e.detail.value, {birth: this.formatBirth})
+			});
+		};
+		Main.prototype.setBirth = function(e) {
+			this.data.birth = e.detail.value;
+		};
 		Main.prototype.render = function() {
 			return apivm.h(
-				"view",
-				{class: "page"},
-
+				"safe-area",
+				null,
 				apivm.h(
 					"form",
 					{class: "form", onSubmit: this.submit},
@@ -78,7 +99,7 @@
 							class: "form-item",
 							onChange: this.setBirth
 						},
-						apivm.h("text", null, "出生年月:", formatBirth)
+						apivm.h("text", null, "出生年月:", this.formatBirth)
 					),
 
 					apivm.h(
@@ -131,7 +152,7 @@
 		return Main;
 	})(Component);
 	Main.css = {
-		".form": {padding: "10px"},
+		".form": {padding: "30px"},
 		".form-item": {flexDirection: "row", marginBottom: "10px"}
 	};
 	apivm.define("main", Main);

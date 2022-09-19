@@ -1,6 +1,5 @@
 <template>
-	<view class="page">
-
+	<safe-area>
 		<form class="form" @submit="submit">
 			<view class="form-item">
 				<text>姓名:</text>
@@ -59,13 +58,17 @@
 
 		</form>
 
-	</view>
+	</safe-area>
 </template>
 <script>
 export default {
 	name: 'main',
 	apiready() {//like created
+		const picker = document.querySelector('#birth-picker')
 
+		picker.setData({
+			data:this.data.dateList
+		})
 	},
 	data() {
 		return {
@@ -105,18 +108,34 @@ export default {
 		}
 	},
 	methods: {
-		submit(e){
+		submit(e) {
+			api.alert({
+				msg: {
+					...e.detail.value,
+					birth: this.formatBirth
+				}
+			})
+		},
+		setBirth(e) {
+			this.data.birth = e.detail.value
 		}
 
+	},
+	computed: {
+		formatBirth() {
+			const { dateList, birth } = this.data
+
+			return `${dateList[0][birth[0]]}-${dateList[1][birth[1]]}`
+		}
 	}
 }
 </script>
 <style>
-	.form{
-		padding: 10px;
-	}
-	.form-item{
-		flex-direction: row;
-		margin-bottom: 10px;
-	}
+.form {
+	padding: 30px;
+}
+.form-item {
+	flex-direction: row;
+	margin-bottom: 10px;
+}
 </style>
