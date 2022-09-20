@@ -1,42 +1,261 @@
 (function() {
+	var data = [
+		{
+			id: 1,
+			title: "肖申克的救赎",
+			cover: "1.jpg"
+		},
+		{
+			id: 2,
+			title: "霸王别姬",
+			cover: "2.jpg"
+		},
+		{
+			id: 3,
+			title: "阿甘正传",
+			cover: "3.jpg"
+		},
+		{
+			id: 4,
+			title: "泰坦尼克号",
+			cover: "4.jpg"
+		},
+		{
+			id: 5,
+			title: "这个杀手不太冷",
+			cover: "5.jpg"
+		},
+		{
+			id: 6,
+			title: "美丽人生",
+			cover: "6.jpg"
+		},
+		{
+			id: 7,
+			title: "千与千寻",
+			cover: "7.jpg"
+		},
+		{
+			id: 8,
+			title: "辛德勒的名单",
+			cover: "8.jpg"
+		},
+		{
+			id: 9,
+			title: "盗梦空间",
+			cover: "9.jpg"
+		},
+		{
+			id: 10,
+			title: "星际穿越",
+			cover: "10.jpg"
+		},
+		{
+			id: 11,
+			title: "忠犬八公的故事",
+			cover: "11.jpg"
+		},
+		{
+			id: 12,
+			title: "楚门的世界",
+			cover: "12.jpg"
+		},
+		{
+			id: 13,
+			title: "海上钢琴师",
+			cover: "13.jpg"
+		},
+		{
+			id: 14,
+			title: "三傻大闹宝莱坞",
+			cover: "14.jpg"
+		},
+		{
+			id: 15,
+			title: "机器人总动员",
+			cover: "15.jpg"
+		},
+		{
+			id: 16,
+			title: "放牛班的春天",
+			cover: "16.jpg"
+		},
+		{
+			id: 17,
+			title: "无间道",
+			cover: "17.jpg"
+		},
+		{
+			id: 18,
+			title: "疯狂动物城",
+			cover: "18.jpg"
+		},
+		{
+			id: 19,
+			title: "大话西游之大圣娶亲",
+			cover: "19.jpg"
+		},
+		{
+			id: 20,
+			title: "熔炉",
+			cover: "20.jpg"
+		},
+		{
+			id: 21,
+			title: "控方证人",
+			cover: "21.jpg"
+		},
+		{
+			id: 22,
+			title: "教父",
+			cover: "22.jpg"
+		},
+		{
+			id: 23,
+			title: "当幸福来敲门",
+			cover: "23.jpg"
+		},
+		{
+			id: 24,
+			title: "触不可及",
+			cover: "24.jpg"
+		},
+		{
+			id: 25,
+			title: "怦然心动",
+			cover: "25.jpg"
+		},
+		{
+			id: 26,
+			title: "龙猫",
+			cover: "26.jpg"
+		},
+		{
+			id: 27,
+			title: "末代皇帝",
+			cover: "27.jpg"
+		},
+		{
+			id: 28,
+			title: "寻梦环游记",
+			cover: "28.jpg"
+		},
+		{
+			id: 29,
+			title: "蝙蝠侠：黑暗骑士",
+			cover: "29.jpg"
+		},
+		{
+			id: 30,
+			title: "活着",
+			cover: "30.jpg"
+		},
+		{
+			id: 31,
+			title: "哈利·波特与魔法石",
+			cover: "31.jpg"
+		},
+		{
+			id: 32,
+			title: "指环王3：王者无敌",
+			cover: "32.jpg"
+		},
+		{
+			id: 33,
+			title: "乱世佳人",
+			cover: "33.jpg"
+		},
+		{
+			id: 34,
+			title: "素媛",
+			cover: "34.jpg"
+		},
+		{
+			id: 35,
+			title: "飞屋环游记",
+			cover: "35.jpg"
+		},
+		{
+			id: 36,
+			title: "我不是药神",
+			cover: "36.jpg"
+		},
+		{
+			id: 37,
+			title: "摔 跤吧！爸爸",
+			cover: "37.jpg"
+		},
+		{
+			id: 38,
+			title: "何以为家",
+			cover: "38.jpg"
+		},
+		{
+			id: 39,
+			title: "十二怒汉",
+			cover: "39.jpg"
+		},
+		{
+			id: 40,
+			title: "哈尔的移动城堡",
+			cover: "40.jpg"
+		},
+		{
+			id: 41,
+			title: "少年派的奇幻漂流",
+			cover: "41.jpg"
+		},
+		{
+			id: 42,
+			title: "鬼子来了",
+			cover: "42.jpg"
+		},
+		{
+			id: 43,
+			title: "猫鼠游戏",
+			cover: "43.jpg"
+		},
+		{
+			id: 44,
+			title: "大话西游之月光宝盒",
+			cover: "44.jpg"
+		},
+		{
+			id: 45,
+			title: "天空之城",
+			cover: "45.jpg"
+		},
+		{
+			id: 46,
+			title: "让子弹飞",
+			cover: "46.jpg"
+		},
+		{
+			id: 47,
+			title: "钢琴家",
+			cover: "47.jpg"
+		},
+		{
+			id: 48,
+			title: "指环王2：双塔奇兵",
+			cover: "48.jpg"
+		},
+		{
+			id: 49,
+			title: "闻香识女人",
+			cover: "49.jpg"
+		},
+		{
+			id: 50,
+			title: "天堂电影院",
+			cover: "50.jpg"
+		}
+	];
+
 	var Main = /*@__PURE__*/ (function(Component) {
 		function Main(props) {
 			Component.call(this, props);
-			this.data = {
-				dateList: [
-					// 有几个数组，将来就会渲染几列数据
-					[
-						1980,
-						1981,
-						1982,
-						1983,
-						1984,
-						1985,
-						1986,
-						1987,
-						1988,
-						1989,
-						1990,
-						1991,
-						1992
-					],
-
-					[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-				],
-
-				birth: [0, 0]
-			};
-			this.compute = {
-				formatBirth: function() {
-					var ref = this.data;
-					var dateList = ref.dateList;
-					var birth = ref.birth;
-
-					return dateList[0][birth[0]] + "-" + dateList[1][birth[1]];
-				},
-				dateList: function() {},
-				birth: function() {}
-			};
+			this.data = {};
 		}
 
 		if (Component) Main.__proto__ = Component;
@@ -44,117 +263,32 @@
 		Main.prototype.constructor = Main;
 		Main.prototype.apiready = function() {
 			//like created
-			var picker = document.querySelector("#birth-picker");
-			picker.setData({data: this.data.dateList});
-		};
-		Main.prototype.submit = function(e) {
-			api.alert({
-				msg: Object.assign({}, e.detail.value, {birth: this.formatBirth})
-			});
-		};
-		Main.prototype.setBirth = function(e) {
-			this.data.birth = e.detail.value;
+			var list = document.getElementById("list");
+			list.load({data: data});
 		};
 		Main.prototype.render = function() {
 			return apivm.h(
 				"safe-area",
-				null,
-				apivm.h(
-					"form",
-					{class: "form", onSubmit: this.submit},
-					apivm.h(
-						"view",
-						{class: "form-item"},
-						apivm.h("text", null, "姓名:"),
-						apivm.h("input", {
-							type: "text",
-							placeholder: "请输入姓名...🥳🥳",
-							name: "name"
-						})
-					),
-
-					apivm.h(
-						"radio-group",
-						{class: "form-item", name: "sex"},
-						apivm.h("text", null, "性别:"),
-						apivm.h(
-							"label",
+				{class: "page"},
+				apivm.h("grid-view", {
+					"column-count": 2,
+					"show-scrollbar": false,
+					id: "list",
+					$bindCell_: function(celltype, item, index) {
+						return apivm.h(
+							"cell",
 							null,
-							apivm.h("radio", {value: "男"}),
-							apivm.h("text", null, "男")
-						),
-						apivm.h(
-							"label",
-							null,
-							apivm.h("radio", {checked: true, value: "女"}),
-							apivm.h("text", null, "女")
-						)
-					),
-
-					apivm.h(
-						"picker",
-						{
-							id: "birth-picker",
-							mode: "multiSelector",
-							class: "form-item",
-							onChange: this.setBirth
-						},
-						apivm.h("text", null, "出生年月:", this.formatBirth)
-					),
-
-					apivm.h(
-						"checkbox-group",
-						{class: "form-item", name: "hobby"},
-						apivm.h("text", null, "爱好:"),
-						apivm.h(
-							"label",
-							null,
-							apivm.h("checkbox", {value: "唱"}),
-							apivm.h("text", null, "唱")
-						),
-						apivm.h(
-							"label",
-							null,
-							apivm.h("checkbox", {value: "跳"}),
-							apivm.h("text", null, "跳")
-						),
-						apivm.h(
-							"label",
-							null,
-							apivm.h("checkbox", {value: "rap"}),
-							apivm.h("text", null, "rap")
-						),
-						apivm.h(
-							"label",
-							null,
-							apivm.h("checkbox", {value: "篮球"}),
-							apivm.h("text", null, "篮球")
-						)
-					),
-
-					apivm.h(
-						"view",
-						{class: "form-item"},
-						apivm.h("text", null, "介绍:"),
-						apivm.h("textarea", {name: "info", placeholder: "请输入个人简介..."})
-					),
-
-					apivm.h(
-						"view",
-						{class: "form-item"},
-						apivm.h("button", {type: "submit"}, "提交"),
-						apivm.h("button", null, "取消")
-					)
-				)
+							apivm.h("image", {src: "../../image/" + item.cover}),
+							apivm.h("text", null, index, "-", item.title)
+						);
+					}
+				})
 			);
 		};
 
 		return Main;
 	})(Component);
-	Main.css = {
-		".form": {padding: "30px"},
-		".form-item": {flexDirection: "row", marginBottom: "10px"}
-	};
+	Main.css = {".page": {height: "100%"}, "#list": {height: "100%"}};
 	apivm.define("main", Main);
 	apivm.render(apivm.h("main", null), "body");
 })();

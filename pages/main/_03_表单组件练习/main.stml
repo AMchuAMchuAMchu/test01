@@ -67,7 +67,7 @@ export default {
 		const picker = document.querySelector('#birth-picker')
 
 		picker.setData({
-			data:this.data.dateList
+			data: this.data.dateList
 		})
 	},
 	data() {
