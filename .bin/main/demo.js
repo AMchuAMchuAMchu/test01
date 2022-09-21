@@ -252,8 +252,8 @@
 		}
 	];
 
-	var Demo9 = /*@__PURE__*/ (function(Component) {
-		function Demo9(props) {
+	var Demo = /*@__PURE__*/ (function(Component) {
+		function Demo(props) {
 			Component.call(this, props);
 			this.data = {
 				refreshState: "normal",
@@ -261,16 +261,16 @@
 			};
 		}
 
-		if (Component) Demo9.__proto__ = Component;
-		Demo9.prototype = Object.create(Component && Component.prototype);
-		Demo9.prototype.constructor = Demo9;
-		Demo9.prototype.apiready = function() {
+		if (Component) Demo.__proto__ = Component;
+		Demo.prototype = Object.create(Component && Component.prototype);
+		Demo.prototype.constructor = Demo;
+		Demo.prototype.apiready = function() {
 			//like created
 			var list = document.getElementById("list");
 			list.load({data: data.slice(0, 10)});
 			this.data.listLength += 10;
 		};
-		Demo9.prototype.getRefreshText = function() {
+		Demo.prototype.getRefreshText = function() {
 			var refreshState = this.data.refreshState;
 			if (refreshState === "normal") {
 				return "加载更多数据";
@@ -280,7 +280,7 @@
 				return "加载数据中";
 			}
 		};
-		Demo9.prototype.setRefreshState = function(e) {
+		Demo.prototype.setRefreshState = function(e) {
 			var this$1 = this;
 
 			var refreshState = e.detail.state;
@@ -292,7 +292,7 @@
 			}
 			this.data.refreshState = refreshState;
 		};
-		Demo9.prototype.loadData = function() {
+		Demo.prototype.loadData = function() {
 			var list = document.getElementById("list");
 			var listLength = this.data.listLength;
 
@@ -303,7 +303,7 @@
 			this.data.listLength += 10;
 			this.data.refreshState = "normal";
 		};
-		Demo9.prototype.render = function() {
+		Demo.prototype.render = function() {
 			return apivm.h(
 				"safe-area",
 				{class: "page"},
@@ -343,9 +343,9 @@
 			);
 		};
 
-		return Demo9;
+		return Demo;
 	})(Component);
-	Demo9.css = {
+	Demo.css = {
 		".page": {height: "100%"},
 		"#list": {height: "100%", padding: "10px"},
 		".title": {
@@ -362,6 +362,6 @@
 		},
 		".refresh-img": {width: "30px", height: "30px"}
 	};
-	apivm.define("demo9", Demo9);
-	apivm.render(apivm.h("demo9", null), "body");
+	apivm.define("demo", Demo);
+	apivm.render(apivm.h("demo", null), "body");
 })();

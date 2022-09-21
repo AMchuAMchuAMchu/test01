@@ -31,7 +31,7 @@
 import data from './data.json'
 
 export default {
-  name: 'demo9',
+  name: 'demo',
   apiready() {//like created
     const list = document.getElementById('list');
     list.load({

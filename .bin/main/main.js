@@ -252,43 +252,116 @@
 		}
 	];
 
-	var Main = /*@__PURE__*/ (function(Component) {
-		function Main(props) {
+	var Demo = /*@__PURE__*/ (function(Component) {
+		function Demo(props) {
 			Component.call(this, props);
-			this.data = {};
+			this.data = {
+				refreshState: "normal",
+				listLength: 0
+			};
 		}
 
-		if (Component) Main.__proto__ = Component;
-		Main.prototype = Object.create(Component && Component.prototype);
-		Main.prototype.constructor = Main;
-		Main.prototype.apiready = function() {
+		if (Component) Demo.__proto__ = Component;
+		Demo.prototype = Object.create(Component && Component.prototype);
+		Demo.prototype.constructor = Demo;
+		Demo.prototype.apiready = function() {
 			//like created
 			var list = document.getElementById("list");
-			list.load({data: data});
+			list.load({data: data.slice(0, 10)});
+			this.data.listLength += 10;
 		};
-		Main.prototype.render = function() {
+		Demo.prototype.getRefreshText = function() {
+			var refreshState = this.data.refreshState;
+			if (refreshState === "normal") {
+				return "加载更多数据";
+			} else if (refreshState === "dragging") {
+				return "上拉加载更多数据";
+			} else {
+				return "加载数据中";
+			}
+		};
+		Demo.prototype.setRefreshState = function(e) {
+			var this$1 = this;
+
+			var refreshState = e.detail.state;
+			if (refreshState === "refreshing") {
+				// 加载更多数据
+				setTimeout(function() {
+					this$1.loadData();
+				}, 1000);
+			}
+			this.data.refreshState = refreshState;
+		};
+		Demo.prototype.loadData = function() {
+			var list = document.getElementById("list");
+			var listLength = this.data.listLength;
+
+			list.insert({
+				data: data.slice(listLength, listLength + 10)
+			});
+
+			this.data.listLength += 10;
+			this.data.refreshState = "normal";
+		};
+		Demo.prototype.render = function() {
 			return apivm.h(
 				"safe-area",
 				{class: "page"},
-				apivm.h("grid-view", {
-					"column-count": 2,
-					"show-scrollbar": false,
-					id: "list",
-					$bindCell_: function(celltype, item, index) {
-						return apivm.h(
-							"cell",
-							null,
-							apivm.h("image", {src: "../../image/" + item.cover}),
-							apivm.h("text", null, index, "-", item.title)
-						);
-					}
-				})
+				apivm.h(
+					"grid-view",
+					{
+						"column-count": 2,
+						"show-scrollbar": false,
+						id: "list",
+						$bindCell_: function(celltype, item, index) {
+							return apivm.h(
+								"cell",
+								null,
+								apivm.h("image", {src: "../../image/" + item.cover}),
+								apivm.h("text", null, index, " - ", item.title)
+							);
+						}
+					},
+					apivm.h(
+						"list-header",
+						null,
+						apivm.h("text", {class: "title"}, "电影列表")
+					),
+
+					apivm.h(
+						"refresh",
+						{
+							type: "footer",
+							class: "refresh",
+							state: this.data.refreshState,
+							onStatechange: this.setRefreshState
+						},
+						apivm.h("image", {src: "../../image/loading.gif", class: "refresh-img"}),
+						apivm.h("text", null, this.getRefreshText())
+					)
+				)
 			);
 		};
 
-		return Main;
+		return Demo;
 	})(Component);
-	Main.css = {".page": {height: "100%"}, "#list": {height: "100%"}};
-	apivm.define("main", Main);
-	apivm.render(apivm.h("main", null), "body");
+	Demo.css = {
+		".page": {height: "100%"},
+		"#list": {height: "100%", padding: "10px"},
+		".title": {
+			fontSize: "25px",
+			fontWeight: "700",
+			textAlign: "center",
+			marginBottom: "10px"
+		},
+		".refresh": {
+			width: "100%",
+			height: "50px",
+			justifyContent: "center",
+			alignItems: "center"
+		},
+		".refresh-img": {width: "30px", height: "30px"}
+	};
+	apivm.define("demo", Demo);
+	apivm.render(apivm.h("demo", null), "body");
 })();
