@@ -270,25 +270,55 @@
 			return apivm.h(
 				"safe-area",
 				{class: "page"},
-				apivm.h("grid-view", {
-					"column-count": 2,
-					"show-scrollbar": false,
-					id: "list",
-					$bindCell_: function(celltype, item, index) {
-						return apivm.h(
-							"cell",
-							null,
-							apivm.h("image", {src: "../../image/" + item.cover}),
-							apivm.h("text", null, index, "-", item.title)
-						);
-					}
-				})
+				apivm.h(
+					"grid-view",
+					{
+						"column-count": 2,
+						"show-scrollbar": false,
+						id: "list",
+						$bindCell_: function(celltype, item, index) {
+							return apivm.h(
+								"cell",
+								null,
+								apivm.h("image", {src: "../../image/" + item.cover}),
+								apivm.h("text", null, index + 1, "-", item.title)
+							);
+						}
+					},
+					apivm.h(
+						"list-header",
+						null,
+						apivm.h("text", {class: "title"}, "电影列表")
+					),
+
+					apivm.h(
+						"refresh",
+						{type: "footer", class: "refresh"},
+						apivm.h("image", {src: "../../image/loading.gif", class: "refresh-img"})
+					)
+				)
 			);
 		};
 
 		return Main;
 	})(Component);
-	Main.css = {".page": {height: "100%"}, "#list": {height: "100%"}};
+	Main.css = {
+		".page": {height: "100%"},
+		"#list": {height: "100%", padding: "10px"},
+		".title": {
+			fontSize: "25px",
+			fontWeight: "700",
+			textAlign: "center",
+			marginBottom: "10px"
+		},
+		".refresh": {
+			width: "100%",
+			height: "50px",
+			justifyContent: "center",
+			alignItems: "center"
+		},
+		".refresh-img": {width: "30px", height: "30px"}
+	};
 	apivm.define("main", Main);
 	apivm.render(apivm.h("main", null), "body");
 })();
