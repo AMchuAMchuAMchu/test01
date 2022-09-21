@@ -255,7 +255,9 @@
 	var Main = /*@__PURE__*/ (function(Component) {
 		function Main(props) {
 			Component.call(this, props);
-			this.data = {};
+			this.data = {
+				refreshState: "normal"
+			};
 		}
 
 		if (Component) Main.__proto__ = Component;
@@ -265,6 +267,11 @@
 			//like created
 			var list = document.getElementById("list");
 			list.load({data: data});
+		};
+		Main.prototype.setRefreshState = function(e) {
+			api.alert({
+				msg: e.detail
+			});
 		};
 		Main.prototype.render = function() {
 			return apivm.h(
@@ -293,7 +300,12 @@
 
 					apivm.h(
 						"refresh",
-						{type: "footer", class: "refresh"},
+						{
+							type: "footer",
+							class: "refresh",
+							state: this.data.refreshState,
+							onStateChange: this.setRefreshState
+						},
 						apivm.h("image", {src: "../../image/loading.gif", class: "refresh-img"})
 					)
 				)

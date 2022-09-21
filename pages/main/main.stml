@@ -8,7 +8,7 @@
 			<image :src="`../../image/${item.cover}`" />
 			<text>{{index+1}}-{{item.title}}</text>
 		</cell>
-		<refresh type="footer" class="refresh">
+		<refresh type="footer" class="refresh" :state="refreshState" @stateChange="setRefreshState">
 			<image src="../../image/loading.gif" class="refresh-img"/>
 		</refresh>
 		</grid-view>
@@ -26,11 +26,15 @@ export default {
 	},
 	data() {
 		return{
-			
+			refreshState:'normal'
 		}
 	},
 	methods: {
-
+		setRefreshState(e){
+			api.alert({
+				msg:e.detail
+			})
+		}
 	}
 }
 </script>
