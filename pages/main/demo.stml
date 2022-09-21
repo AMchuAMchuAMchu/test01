@@ -1,0 +1,106 @@
+<template>
+	<safe-area class="page">
+		<grid-view :column-count="2" :show-scrollbar="false" id="list">
+			<list-header>
+				<text class="title">电影列表</text>
+			</list-header>
+			<cell>
+				<image :src="`../../image/${item.cover}`" />
+				<text>{ index } - { item.title }</text>
+			</cell>
+			<!-- 
+				refresh 下拉刷新或上拉加载
+					type 
+						header 下拉刷新
+						footer 上拉加载
+
+					加载数据有三种状态：
+						normal 
+						dragging
+						refreshing
+
+			 -->
+			<refresh type="footer" class="refresh" :state="refreshState" @statechange="setRefreshState">
+				<image src="../../image/loading.gif" class="refresh-img" />
+				<text>{ this.getRefreshText() }</text>
+			</refresh>
+		</grid-view>
+	</safe-area>
+</template>
+<script>
+import data from './data.json'
+
+export default {
+  name: 'demo9',
+  apiready() {//like created
+    const list = document.getElementById('list');
+    list.load({
+      data: data.slice(0, 10)
+    })
+    this.data.listLength += 10
+  },
+  data() {
+    return {
+      refreshState: 'normal',
+      listLength: 0
+    }
+  },
+  methods: {
+    getRefreshText() {
+      const refreshState = this.data.refreshState;
+      if (refreshState === 'normal') {
+        return '加载更多数据'
+      } else if (refreshState === 'dragging') {
+        return '上拉加载更多数据'
+      } else {
+        return '加载数据中'
+      }
+    },
+    setRefreshState(e) {
+      const refreshState = e.detail.state
+      if (refreshState === 'refreshing') {
+        // 加载更多数据
+        setTimeout(() => {
+          this.loadData()
+        }, 1000)
+      }
+      this.data.refreshState = refreshState;
+    },
+    loadData() {
+      const list = document.getElementById('list');
+      const listLength = this.data.listLength;
+
+      list.insert({
+        data: data.slice(listLength, listLength + 10)
+      })
+      this.data.listLength += 10
+      this.data.refreshState = 'normal'
+    }
+  }
+}
+</script>
+<style>
+.page {
+  height: 100%;
+}
+#list {
+  height: 100%;
+  padding: 10px;
+}
+.title {
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.refresh {
+  width: 100%;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.refresh-img {
+  width: 30px;
+  height: 30px;
+}
+</style>
