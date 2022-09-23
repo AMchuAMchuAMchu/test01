@@ -1,10 +1,16 @@
 <template>
 	<safe-area class="page">
 		<grid-view :column-count="2" :show-scrollbar="false" id="list">
+		<list-header>
+			<text class="title">电影列表</text>
+		</list-header>
 		<cell>
 			<image :src="`../../image/${item.cover}`" />
-			<text>{{index}}-{{item.title}}</text>
+			<text>{{index+1}}-{{item.title}}</text>
 		</cell>
+		<refresh type="footer" class="refresh" :state="refreshState" @stateChange="setRefreshState">
+			<image src="../../image/loading.gif" class="refresh-img"/>
+		</refresh>
 		</grid-view>
 	</safe-area>
 </template>
@@ -20,11 +26,15 @@ export default {
 	},
 	data() {
 		return{
-			
+			refreshState:'normal'
 		}
 	},
 	methods: {
-
+		setRefreshState(e){
+			api.alert({
+				msg:e.detail
+			})
+		}
 	}
 }
 </script>
@@ -34,5 +44,22 @@ export default {
 	}
 	#list{
 		height: 100%;
+		padding: 10px;
+	}
+	.title{
+		font-size: 25px;
+		font-weight: 700;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	.refresh{
+		width: 100%;
+		height: 50px;
+		justify-content: center;
+		align-items: center;
+	}
+	.refresh-img{
+		width: 30px;
+		height: 30px;
 	}
 </style>
