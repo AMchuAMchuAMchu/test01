@@ -256,7 +256,8 @@
 		function Main(props) {
 			Component.call(this, props);
 			this.data = {
-				refreshState: "normal"
+				refreshState: "normal",
+				loadLength: 10
 			};
 		}
 
@@ -288,6 +289,7 @@
 			var refreshState01 = e.detail.state;
 
 			if (refreshState01 === "refreshing") {
+				this.data.loadLength += 10;
 				setTimeout(function() {
 					this$1.loadData();
 				}, 1000);
@@ -297,7 +299,7 @@
 		Main.prototype.loadData = function() {
 			var list = document.querySelector("#list");
 			list.insert({
-				data: data.slice(10, 20)
+				data: data.slice(this.data.loadLength, this.data.loadLength + 10)
 			});
 
 			this.data.refreshState = "normal";

@@ -1,16 +1,17 @@
 <template>
 	<safe-area class="page">
 		<grid-view :column-count="2" :show-scrollbar="false" id="list">
-		<list-header>
-			<text class="title">电影列表</text>
-		</list-header>
-		<cell>
-			<image :src="`../../image/${item.cover}`" />
-			<text>{{index+1}}-{{item.title}}</text>
-		</cell>
-		<refresh type="footer" class="refresh" :state="refreshState" @stateChange="setRefreshState">
-			<image src="../../image/loading.gif" class="refresh-img"/>
-		</refresh>
+			<list-header>
+				<text class="title">电影列表</text>
+			</list-header>
+			<cell>
+				<image :src="`../../image/${item.cover}`" />
+				<text>{{index+1}}-{{item.title}}</text>
+			</cell>
+			<refresh type="footer" class="refresh" :state="refreshState" @stateChange="setRefreshState">
+				<image src="../../image/loading.gif" class="refresh-img" />
+				<text>{{this.getRefreshText()}}</text>
+			</refresh>
 		</grid-view>
 	</safe-area>
 </template>
@@ -18,48 +19,79 @@
 import data from 'D:/seldom/front_end/YonBuilder_basic/test01/pages/main/data.json'
 export default {
 	name: 'main',
-	apiready(){//like created
+	apiready() {//like created
 		const list = document.getElementById('list')
 		list.load({
-			data
+			data: data.slice(0, 10)
 		})
 	},
 	data() {
-		return{
-			refreshState:'normal'
+		return {
+			refreshState: 'normal',
+			loadLength:10
 		}
 	},
 	methods: {
-		setRefreshState(e){
-			api.alert({
-				msg:e.detail
+		getRefreshText() {
+			const msg = this.data.refreshState
+			if (msg === 'normal') {
+				return "加载更多数据...🤣🤣🤣"
+			} else if (msg === 'dragging') {
+				return "上拉加载更多数据...🎃🎃🎃"
+			} else {
+				return "数据加载中...🍹🍹🍹"
+			}
+
+		},
+		setRefreshState(e) {
+			// api.alert({
+			// 	msg:e.detail
+			// })
+
+			const refreshState01 = e.detail.state
+
+			if (refreshState01 === 'refreshing') {
+				this.data.loadLength += 10
+				setTimeout(() => {
+					this.loadData()
+				}, 1000)
+			}
+			this.data.refreshState = e.detail.state
+		},
+		loadData() {
+			const list = document.querySelector('#list')
+			list.insert({
+				data: data.slice(this.data.loadLength, this.data.loadLength+10)
 			})
+
+			this.data.refreshState = 'normal'
+
 		}
 	}
 }
 </script>
 <style>
-	.page {
-		height: 100%;
-	}
-	#list{
-		height: 100%;
-		padding: 10px;
-	}
-	.title{
-		font-size: 25px;
-		font-weight: 700;
-		text-align: center;
-		margin-bottom: 10px;
-	}
-	.refresh{
-		width: 100%;
-		height: 50px;
-		justify-content: center;
-		align-items: center;
-	}
-	.refresh-img{
-		width: 30px;
-		height: 30px;
-	}
+.page {
+	height: 100%;
+}
+#list {
+	height: 100%;
+	padding: 10px;
+}
+.title {
+	font-size: 25px;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.refresh {
+	width: 100%;
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+}
+.refresh-img {
+	width: 30px;
+	height: 30px;
+}
 </style>

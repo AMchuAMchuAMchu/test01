@@ -27,7 +27,8 @@ export default {
 	},
 	data() {
 		return {
-			refreshState: 'normal'
+			refreshState: 'normal',
+			loadLength:10
 		}
 	},
 	methods: {
@@ -50,6 +51,7 @@ export default {
 			const refreshState01 = e.detail.state
 
 			if (refreshState01 === 'refreshing') {
+				this.data.loadLength += 10
 				setTimeout(() => {
 					this.loadData()
 				}, 1000)
@@ -59,7 +61,7 @@ export default {
 		loadData() {
 			const list = document.querySelector('#list')
 			list.insert({
-				data: data.slice(10, 20)
+				data: data.slice(this.data.loadLength, this.data.loadLength+10)
 			})
 
 			this.data.refreshState = 'normal'
