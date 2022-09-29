@@ -13,7 +13,7 @@
 		<view class="container">
 			<button @click="setOrderType('asc')">😂😂时间升序</button>
 			<button @click="setOrderType('desc')">🤣🤣时间降序</button>
-			<button @click="setOrderType('origin')">😤😤时间顺序</button>
+			<button @click="setOrderType('origin')">😤😤时间原序</button>
 		</view>
     <img style="background-size:cover" src="../../image/11385343fbf2b2119313f479cdd272380cd7912320f0.jpg"/>
 	</safe-area>

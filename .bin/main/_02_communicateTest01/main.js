@@ -22,7 +22,7 @@
 				"view",
 				{class: "page"},
 				apivm.h("h1", null, "我是子组件...🍏🍏"),
-				apivm.h("h1", null, "收到的父组件的信息:", this.props.anime),
+				apivm.h("h1", null, "收到的父组件的信息:", this.props.animeee),
 				apivm.h("input", {
 					type: "text",
 					placeholder: "请输入金额...🎃🎃",
@@ -50,7 +50,7 @@
 		function Main(props) {
 			Component.call(this, props);
 			this.data = {
-				anime: "LYCORIS",
+				animeee: "LYCORIS",
 				count: 0
 			};
 		}
@@ -77,7 +77,7 @@
 					{class: "page"},
 					apivm.h("h1", null, "我是父组件...😎😎"),
 
-					apivm.h("child", {anime: this.data.anime, onSetNum: this.setNum}),
+					apivm.h("child", {anime: this.data.animeee, onSetNum: this.setNum}),
 					apivm.h("h1", null, "count show = ", this.data.count)
 				)
 			);

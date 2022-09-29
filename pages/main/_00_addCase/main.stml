@@ -14,7 +14,7 @@
 export default {
 	name: 'main',
 	apiready(){//like created
-		
+			
 	},
 	data() {
 		return{
