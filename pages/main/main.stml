@@ -2,7 +2,7 @@
 	<safe-area class="page">
 		<grid-view :column-count="2" :show-scrollbar="false" id="list">
 			<list-header>
-				<text class="title">电影列表</text>
+				<text class="title">电影列表🎃🎃</text>
 			</list-header>
 			<cell>
 				<image :src="`../../image/${item.cover}`" />

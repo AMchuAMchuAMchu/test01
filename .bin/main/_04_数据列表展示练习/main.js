@@ -256,7 +256,8 @@
 		function Main(props) {
 			Component.call(this, props);
 			this.data = {
-				refreshState: "normal"
+				refreshState: "normal",
+				loadLength: 10
 			};
 		}
 
@@ -266,12 +267,42 @@
 		Main.prototype.apiready = function() {
 			//like created
 			var list = document.getElementById("list");
-			list.load({data: data});
+			list.load({data: data.slice(0, 10)});
+		};
+		Main.prototype.getRefreshText = function() {
+			var msg = this.data.refreshState;
+			if (msg === "normal") {
+				return "加载更多数据...🤣🤣🤣";
+			} else if (msg === "dragging") {
+				return "上拉加载更多数据...🎃🎃🎃";
+			} else {
+				return "数据加载中...🍹🍹🍹";
+			}
 		};
 		Main.prototype.setRefreshState = function(e) {
-			api.alert({
-				msg: e.detail
+			var this$1 = this;
+
+			// api.alert({
+			// 	msg:e.detail
+			// })
+
+			var refreshState01 = e.detail.state;
+
+			if (refreshState01 === "refreshing") {
+				this.data.loadLength += 10;
+				setTimeout(function() {
+					this$1.loadData();
+				}, 1000);
+			}
+			this.data.refreshState = e.detail.state;
+		};
+		Main.prototype.loadData = function() {
+			var list = document.querySelector("#list");
+			list.insert({
+				data: data.slice(this.data.loadLength, this.data.loadLength + 10)
 			});
+
+			this.data.refreshState = "normal";
 		};
 		Main.prototype.render = function() {
 			return apivm.h(
@@ -306,7 +337,8 @@
 							state: this.data.refreshState,
 							onStateChange: this.setRefreshState
 						},
-						apivm.h("image", {src: "../../image/loading.gif", class: "refresh-img"})
+						apivm.h("image", {src: "../../image/loading.gif", class: "refresh-img"}),
+						apivm.h("text", null, this.getRefreshText())
 					)
 				)
 			);
