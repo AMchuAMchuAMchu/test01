@@ -22,7 +22,7 @@
 				"view",
 				{class: "page"},
 				apivm.h("h1", null, "我是子组件...🍏🍏"),
-				apivm.h("h1", null, "收到的父组件的信息:", this.props.anime),
+				apivm.h("h1", null, "收到的父组件的信息:", this.props.animeee),
 				apivm.h("input", {
 					type: "text",
 					placeholder: "请输入金额...🎃🎃",

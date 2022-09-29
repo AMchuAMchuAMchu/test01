@@ -50,7 +50,7 @@
 		function Main(props) {
 			Component.call(this, props);
 			this.data = {
-				animeee: "LYCORIS",
+				anime: "LYCORIS",
 				count: 0
 			};
 		}
@@ -77,7 +77,7 @@
 					{class: "page"},
 					apivm.h("h1", null, "我是父组件...😎😎"),
 
-					apivm.h("child", {anime: this.data.animeee, onSetNum: this.setNum}),
+					apivm.h("child", {animeee: this.data.anime, onSetNum: this.setNum}),
 					apivm.h("h1", null, "count show = ", this.data.count)
 				)
 			);
