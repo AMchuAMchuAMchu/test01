@@ -50,7 +50,7 @@
 		function Main(props) {
 			Component.call(this, props);
 			this.data = {
-				anime: "LYCORIS",
+				anime: "Lycoris Recoil千束",
 				count: 0
 			};
 		}

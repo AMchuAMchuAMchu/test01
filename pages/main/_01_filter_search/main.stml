@@ -3,7 +3,7 @@
 		<!-- 
 			收集数据使用v-model
 		-->
-		<input type="text" placeholder="请输入搜索内容" class="search" v-model="searchText" />
+		<input type="text" placeholder="请输入搜索内容🍹🍹" class="search" v-model="searchText" />
 		<!-- 遍历的元素需要包裹一个容器，否则可能影响到其他元素功能 -->
 		<view>
 			<text v-for="anime in handleAnimes" :key="anime.id">

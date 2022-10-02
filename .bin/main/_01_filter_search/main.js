@@ -69,7 +69,7 @@
 
 				apivm.h("input", {
 					type: "text",
-					placeholder: "请输入搜索内容",
+					placeholder: "请输入搜索内容🍹🍹",
 					class: "search",
 					onInput: function(e) {
 						if (typeof searchText != "undefined") {
@@ -127,7 +127,7 @@
 								return this$1.setOrderType("origin");
 							}
 						},
-						"😤😤时间顺序"
+						"😤😤时间原序"
 					)
 				),
 				apivm.h("img", {
